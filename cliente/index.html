@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>No-hay-calabazas</title>
+    <!--Mi juego depende del paser
+    	Importa el orden-->
+    <script src="./lib/phaser.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="./src/cliente.js"></script>
+    <script src="./src/asteroides.js"></script>  
+    <script src="./src/ini.js"></script>
+    <script src="./src/control.js"></script>
+    <script src="./src/com.js"></script>
+    <link rel="stylesheet" href="./style/estilo.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#" id="ini1" onclick="comprobarUsuario();">No-hay-calabazas</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="right hide-on-med-and-down">
+            <li class="active"><a href="obtenerResultados" id="ini2" onclick="Juego.obtenerResultados();">Resultados</a></li>
+          </ul>
+      <ul class="nav navbar-nav navbar-right" id="inicio">
+        <!--li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li-->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container-fluid bg1 text-center" id="cnt1">
+        <div class="row">   
+            <div class="row">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-6">
+                   <div id="partida"></div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+    <div class="juego" text-center>
+        <div id="cabecera"></div>
+        <div id="no-hay-calabazas" align="center"></div>
+    </div>
+
+<footer class="container-fluid text-center">
+    <p>Footer Text</p>
+</footer>
+    <script type="text/javascript">
+        //mostrarLogin(); 
+        com = new com();
+        com.comprobarUsuario();
+	</script>
+</body>
+</html>
