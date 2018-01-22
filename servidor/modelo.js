@@ -120,11 +120,21 @@ function Juego() {
 		}
 		callback(lista);
 	}
-	this.agregarResultado = function(data) {
+	/*this.agregarResultado = function(data) {
 		// buscar el email de data.id
 		this.persistencia.insertarResultado(data, function(res){
 			console.log("Resultado insertado");
 		});
+	}*/
+	this.agregarResultado=function(res){
+        this.persistencia.insertarResultado(res,function(usu){
+            if(usu){
+                console.log("Resultado insertado");
+            }
+            else{
+                console.log("Problemas al insertar");            
+            }   
+        });
 	}
 	this.obtenerResultados = function(callback){
 		this.persistencia.encontrarTodosResultados(function(res) {
@@ -189,7 +199,6 @@ function Partida(nombre, num, juego) {
 			this.veg++;
 			this.nave='nave2';
 		}
-		console.log(this.jugadores);
 		if (Object.keys(this.jugadores).length>=this.numJugadores){			
 			this.estado = new Jugar();
 			this.enviarAJugar();
@@ -215,7 +224,8 @@ function Partida(nombre, num, juego) {
 		if (data.puntos >= this.objetivoNumFruta) {
 			this.estado = new Final();
 			this.enviarFinal(data.id);
-			this.juego.agregarResultado({"email":data.email,"usuario":data.id,"nivel":this.objetivoNumFruta,"tiempo":data.tiempo});
+			var fecha=Date.now();
+			this.juego.agregarResultado({"email":data.email,"fecha":fecha,"usuario":data.id,"nivel":this.objetivoNumFruta,"tiempo":data.tiempo});
 			console.log('Tiempo: ' + data.tiempo);
 		} else {
 			this.callback('movimiento', data);

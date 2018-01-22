@@ -20,7 +20,10 @@ function borrar(){
 
 function mostrarIntroducirPartida() {
 	limpiar();
-	var cadena;
+	$('#cabecera').remove();
+	$('#cabecera').remove();
+
+	var cadena = " ";
 	cadena = "<h1><font color='black'>No Hay Calabazas</font></h1>";
 	cadena=cadena+"<form class='form-inline'><div class='form-group'><label id='lbl'><font color='white'>Partida:</font></label> ";
 	cadena=cadena+'<input id="nombre" class="form-control" type="text" placeholder="nombre jugador"> ';
@@ -34,7 +37,6 @@ function mostrarIntroducirPartida() {
 		if (nombre != ""){
 			borrar();
 			cliente.ini(nombre, num);
-			console.log("1");
 			mostrarCanvas();
 		}
 	});

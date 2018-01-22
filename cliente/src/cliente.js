@@ -12,7 +12,6 @@ function Cliente(id, email){ /* El id viene de mongo */
     	this.socket.emit('unirme',this.nombre);
 	};
 	this.nuevoJugador = function() {
-		console.log("7");
 		this.socket.emit('nuevoJugador', {room:this.nombre, id:this.id}); /* El cliente espera */
 	}; // Fin nuevoJugador
 	this.enviarPosicion=function(x,y,ang, puntos, tiempo){

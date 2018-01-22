@@ -40,7 +40,6 @@ function Juego(){
         //  A spacey background
         game.add.tileSprite(0, 0, game.width, game.height, 'espacio');
         // Contador titulo /
-        console.log("6");
         this.contadorTxt = game.add.text(game.width-70, 30, 'Tiempo: 0', { font: "20px Arial", fill: "#ffffff", align: "right" });
         this.contadorTxt.anchor.setTo(0.5, 0.5);
         this.veggies = game.add.physicsGroup();
@@ -54,7 +53,7 @@ function Juego(){
         this.cursors = game.input.keyboard.createCursorKeys();
         game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
         
-        this.marcador = game.add.text(game.world.centerX, 25, "Partida: "+cliente.nombre+" - Puntos. Yo: 0", {
+        this.marcador = game.add.text(game.world.centerX, 25, "Partida: "+cliente.email+" - Puntos. Yo: 0 - Rival:0", {
             font: "25px Arial",
             fill: "#FDFEFE",
             align: "center"
@@ -89,7 +88,7 @@ function Juego(){
         return true;
     }
     this.faltaUno = function(){
-       this.marcador.setText("Partida: "+cliente.room+" | Yo:0 - Rival:0 \n --- Esperando rival ---");
+        this.marcador.setText(cliente.email.substr(0, cliente.email.indexOf("@"))+":0 - Rival:0 \n --- Esperando rival ---");
         this.marcador.anchor.setTo(0.5, 0);
         game.world.bringToTop(this.marcador);
     }
@@ -99,7 +98,7 @@ function Juego(){
            if (nave){
                 if (game.physics.arcade.collide(nave.sprite, this.veggies, this.collisionHandler, this.processHandler, this))
                 {
-                    console.log('boom');
+                    
                 }
                 if (cliente.num>1){
                     if (game.physics.arcade.collide(this.rival.sprite, this.veggies, this.collisionHandler,this.rivalHandler, this))
@@ -127,13 +126,14 @@ function Juego(){
                 //nave.bullets.forEachExists(this.screenWrap, this); 
                 //this.actualizarMarcador();
             }
-            else
-                this.faltaUno();
         }
     }
+    var email =cliente.email.substr(0, cliente.email.indexOf("@"));
+    var email2 =this.rival;
     this.actualizarMarcador=function(){
+        var cadena=email+" Puntos: ";
         for(var jug in this.naves){
-            var cadena = this.naves[jug].email+" Puntos: "+this.naves[jug].puntos+" ";
+         cadena = cadena + this.naves[jug].puntos+" - ";
         };
         this.marcador.setText(cadena);
         game.world.bringToTop(this.marcador);

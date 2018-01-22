@@ -67,6 +67,7 @@ var cadena='<div class="container" id="login"><div class="mainbox col-md-6 col-m
     var email2=$('#email2').val();
     if (testEmail.test(this.value)&&comprobarEmail(email,email2)) 
     {
+
         $('#nombreBtn').on('click',function(){  
           var clave=$('#clave').val();      
           $('#nombre').remove();
@@ -90,43 +91,47 @@ function mostrarActualizarEliminar(){
     var usr=JSON.parse($.cookie("usr"));
     uid=usr._id;
   }
-  //if ($.cookie('uid')!=undefined)
   if(uid!=undefined)
   {
-    //$('#cabecera').append('<div class="container" id="cabeceraP"><div class="mainbox col-md-6 col-md-offset-3"><h2>Actualizar datos</h2><input type="text" id="email" class="form-control" placeholder="Email: '+usr.email+'"><input type="text" id="nombre" class="form-control" placeholder="Nombre: '+usr.nombre+'"><input type="password" id="newpass" class="form-control" placeholder="introduce tu nueva clave">');
-    //$('#cabecera').append('<button type="button" id="actualizarBtn" class="btn btn-primary btn-md">Actualizar usuario</button> <button type="button" id="eliminarBtn" class="btn btn-danger btn-md">Eliminar usuario</button></div></div>');
-    var cadena = '<div id="cabeceraP" class="bg4" style="padding-bottom:15px;">';
+    var cadena = '<div id="cabeceraActualizar" class="bg4" style="padding-bottom:15px;">';
     cadena = cadena + '<h2>Actualizar datos del usuario</h2>';
     cadena = cadena + '<table class="table">';
     cadena = cadena + '<tr><td><label>Email: </label></td><td>'+usr.email+'</td></tr>';
-    cadena = cadena + '<tr><td><label>Nick: </label></td><td><input type="text" id="nick" class="form-control" placeholder="Nick actual: '+usr.nick+'"></td></tr>';
-    cadena = cadena + '<tr><td><label>Clave anterior: </label></td><td><input type="password" id="oldpass" class="form-control" placeholder="Clave anterior:"></span></td></tr>';
+    cadena = cadena + '<tr><td><label>Clave anterior: </label></td><td><input type="password" id="oldpass" class="form-control" placeholder="Contraseña anterior:"></span></td></tr>';
     cadena = cadena + '<tr><td><label>Nueva clave: </label></td><td><input type="password" id="newpass" class="form-control" placeholder="introduce tu nueva clave"></td></tr>';
     cadena = cadena + '<tr><td><label>Repite la nueva clave </label></td><td><input type="password" id="newpass2" class="form-control" placeholder="repite la nueva clave"></td></tr></table> ';
     cadena = cadena + '<p><button type="button" id="actualizarBtn" class="btn btn-primary btn-md">Actualizar usuario</button> <button type="button" id="eliminarBtn" class="btn btn-danger btn-md">Eliminar usuario</button></div>';
     cadena = cadena + '<h4 id="info"><span class="label label-warning"></span></h4>';
-    $('#cabecera').append(cadena);
+    $('#cabeceraActualizar').append(cadena);
     $('#partida').remove();
     $('#actualizarBtn').on('click',function(){
       var oldpass=$('#oldpass').val();
       var newpass=$('#newpass').val();
       var newpass2=$('#newpass2').val();
-      var nick=$('#nick').val();
-      //console.log("datos: "+oldpass+" "+newpass+" "+newpass2+" "+nick);
-      if (oldpass=="" && newpass=="" && newpass2=="" && nick==""){
-        mostrarAviso("No hay nada que modificar");
-      }
-      else{
-        $('#actualizarBtn').remove();   
-        com.actualizarUsuario(oldpass,newpass,newpass2,nick);
-      }
+      console.log(usr.pass);
+      console.log(oldpass);
+      //if (oldpass == usr.pass) {
+        if (oldpass=="" && newpass=="" && newpass2==""){
+          mostrarAviso("No se han introducido parametros");
+        } else if ((oldpass != newpass) && (oldpass != newpass2) && (newpass == newpass2)){
+          //$('#actualizarBtn').remove();   
+          com.actualizarUsuario(oldpass,newpass,newpass2);
+          alert("Contraseña cambiada");
+          $('#cabeceraActualizar').remove();
+        reset();
+        } else {
+          mostrarAviso("Datos introducidos incorrectos");
+        }
+      /*} else {
+        mostrarAviso("Contraseña antigua incorrecta");
+      }*/
     });
     $('#eliminarBtn').on('click',function(){
       var oldpass=$('#oldpass').val();
       if (oldpass!=""){
         //var clave=$('#clave').val();
         $('#nombre').remove();
-        $('#eliminarBtn').remove();   
+        //$('#eliminarBtn').remove();   
         com.eliminarUsuario();
       }
       else
@@ -173,34 +178,6 @@ function mostrarResultados(datos){
  // mostrarControlPaginas(datos.length); 
 }
 
-function obtenerLosMejores(datos){
-  var usr=JSON.parse($.cookie("usr"));
-  var miEmail=usr.email;
-  // for(var i=0;i<numero;i++){
-  //   nuevaCol.push(_.filter(datos,function(ele){
-  //     return ele.nivel;
-  //   }))
-  // }
-  var tope;
-  if (datos.length<10){
-    tope=datos.length;
-  }
-  else
-    tope=20;
-  var nCol=(_.sortBy(datos,'puntos')).reverse();
-  var nuevaCol=nCol.reverse(); 
-  var cadena="<table class='table table-bordered table-condensed table-striped bg4'><tr><th>Puesto</th><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Puntos</th></tr>";
-  for(var i=0;i<tope;i++){ 
-     // var fecha=new Date(nuevaCol[i].fecha);
-      //var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
-      var nombre=nuevaCol[i].email;
-      //var nombre=nuevaCol[i].usuario;
-      cadena=cadena+"<tr><td>"+(i+1)+"</td><td>"+nombre+"</td><td>"+"</td><td> "+nuevaCol[i].nivel+"</td>"+"</td><td>"+nuevaCol[i].tiempo+"</td></tr>";      
-    }
-    cadena=cadena+"</table>";
-  return cadena;
-}
-
 function obtenerTodos(datos){
   var misDatos=(_.sortBy(datos,'puntos')).reverse();
   var cadena="<table id='table' class='table table-bordered table-condensed table-striped bg4'><thead><tr><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Puntos</th></tr></thead>";
@@ -208,7 +185,7 @@ function obtenerTodos(datos){
   for(var i=0;i<misDatos.length;i++){
       var fecha=new Date(misDatos[i].fecha);
       var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
-      var nombre=misDatos[i].usuario;
+      var nombre=misDatos[i].email.substr(0,misDatos[i].email.indexOf('@'));
       cadena=cadena+"<tr class='data'><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+misDatos[i].nivel+"</td>"+"</td><td>"+misDatos[i].puntos+"</td></tr>";      
     }
     cadena=cadena+"</tbody></table>";
@@ -228,8 +205,36 @@ function obtenerMisLogros(datos){
   for(var i=0;i<misDatos.length;i++){ 
       var fecha=new Date(misDatos[i].fecha);
       var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
-      var nombre=misDatos[i].usuario;
+      var nombre=misDatos[i].email.substr(0,misDatos[i].email.indexOf('@'));
       cadena=cadena+"<tr><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+misDatos[i].nivel+"</td>"+"</td><td>"+misDatos[i].puntos+"</td></tr>";      
+    }
+    cadena=cadena+"</table>";
+  return cadena;
+}
+
+function obtenerLosMejores(datos){
+  var usr=JSON.parse($.cookie("usr"));
+  var miEmail=usr.email;
+  
+  // for(var i=0;i<numero;i++){
+  //   nuevaCol.push(_.filter(datos,function(ele){
+  //     return ele.nivel;
+  //   }))
+  // }
+  var tope;
+  if (datos.length<10){
+    tope=datos.length;
+  }
+  else
+    tope=10;
+  var nCol=_.sortBy(datos,'puntos');
+  var nuevaCol=nCol.reverse(); 
+  var cadena="<table class='table table-bordered table-condensed table-striped bg4'><tr><th>Puesto</th><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Puntos</th></tr>";
+  for(var i=0;i<tope;i++){ 
+      var fecha=new Date(nuevaCol[i].fecha);
+      var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
+      var nombre=nuevaCol[i].email.substr(0,nuevaCol[i].email.indexOf('@'));
+      cadena=cadena+"<tr><td>"+(i+1)+"</td><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+nuevaCol[i].nivel+"</td>"+"</td><td>"+nuevaCol[i].puntos+"</td></tr>";      
     }
     cadena=cadena+"</table>";
   return cadena;
@@ -248,7 +253,7 @@ function limpiar(){
   $('#login').remove();
   $('#nombreBtn').remove();
   $('#refRecordar').remove();
-  $('#cabecera').remove();
+  //$('#cabecera').remove();
 
  /* $('#nombre').remove();
   $('#regBtn').remove();
@@ -280,6 +285,6 @@ function reset(){
   eliminarGame();  
   eliminarCookies(); 
   //mostrarNavLogin();
-  comprobarUsuario();
+  com.comprobarUsuario();
   //location.reload();
 }

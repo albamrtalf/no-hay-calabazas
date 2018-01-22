@@ -84,13 +84,13 @@ function com () {
 	  else
 	    mostrarAviso("Debes iniciar sesión");
 	}
-	this.actualizarUsuario=function(oldpass,newpass,newpass2,nick){
+	this.actualizarUsuario=function(oldpass,newpass,newpass2){
 	  var usr=JSON.parse($.cookie("usr"));
 	  var nivel=usr.nivel;
 	 $.ajax({
 	    type:'PUT',
 	    url:'/actualizarUsuario',
-	    data:JSON.stringify({uid:usr._id,email:usr.email,nick:nick,oldpass:oldpass,newpass:newpass,newpass2:newpass2}),
+	    data:JSON.stringify({uid:usr._id,email:usr.email,oldpass:oldpass,newpass:newpass,newpass2:newpass2}),
 	    success:function(data){
 	      if (data.email==undefined){
 	        mostrarRegistro();
@@ -120,5 +120,6 @@ function com () {
 	    contentType:'application/json',
 	    dataType:'json'
 	  });
+	  mostrarLogin();
 	}
 }
