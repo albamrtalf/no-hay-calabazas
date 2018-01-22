@@ -152,7 +152,7 @@ function eliminarGame(){
 }
 
 function mostrarResultados(datos){
-  eliminarGame();
+  //eliminarGame();
   limpiar();
  $('#partida').remove();
   //var cadena="<div class='panel panel-default' id='res'><div class='panel-heading'><h4>Resultados</h4></div>";
