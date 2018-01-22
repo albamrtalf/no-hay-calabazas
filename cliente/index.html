@@ -15,6 +15,7 @@
     <script src="./src/ini.js"></script>
     <script src="./src/control.js"></script>
     <script src="./src/com.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <link rel="stylesheet" href="./style/estilo.css">
 
 </head>
@@ -27,14 +28,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#" id="ini1" onclick="comprobarUsuario();">No-hay-calabazas</a>
+      <a class="navbar-brand" href="#" id="ini1" onclick="com.comprobarUsuario();">No-hay-calabazas</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="right hide-on-med-and-down">
-            <li class="active"><a href="obtenerResultados" id="ini2" onclick="Juego.obtenerResultados();">Resultados</a></li>
-          </ul>
-      <ul class="nav navbar-nav navbar-right" id="inicio">
-        <!--li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li-->
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#" id="init2" onclick="com.obtenerResultados();">Resultados</a></li>
+        <li><a href="#" onclick="mostrarActualizarEliminar();">Modificar perfil</a></li>
+          <li><a href="#" onclick="reset();">Salir</a></li>
       </ul>
     </div>
   </div>
@@ -47,6 +47,8 @@
                 </div>
                 <div class="col-sm-6">
                    <div id="partida"></div>
+                   <div id="resultados"></div>
+                   <div id="cabecera"></div>
                 </div>
             </div>
             <div class="col-sm-3">

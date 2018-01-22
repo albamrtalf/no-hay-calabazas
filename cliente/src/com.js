@@ -70,4 +70,55 @@ function com () {
 		    mostrarLogin();
 		}
 	}
+	this.obtenerResultados=function(){
+	  var uid;
+	  if ($.cookie("usr")!=undefined){
+	    var usr=JSON.parse($.cookie("usr"));
+	    uid=usr._id;
+	  }
+	  if (uid!=undefined){
+	    $.getJSON("/obtenerResultados/"+uid,function(data){          
+	        mostrarResultados(data);
+	    });
+	  }
+	  else
+	    mostrarAviso("Debes iniciar sesión");
+	}
+	this.actualizarUsuario=function(oldpass,newpass,newpass2,nick){
+	  var usr=JSON.parse($.cookie("usr"));
+	  var nivel=usr.nivel;
+	 $.ajax({
+	    type:'PUT',
+	    url:'/actualizarUsuario',
+	    data:JSON.stringify({uid:usr._id,email:usr.email,nick:nick,oldpass:oldpass,newpass:newpass,newpass2:newpass2}),
+	    success:function(data){
+	      if (data.email==undefined){
+	        mostrarRegistro();
+	      }
+	      else{
+	        $.cookie("usr",JSON.stringify(data));
+	        mostrarIniciarPartida(data);
+	      }
+	      },
+	    contentType:'application/json',
+	    dataType:'json'
+	  });
+	}
+	this.eliminarUsuario=function(){
+	  var usr=JSON.parse($.cookie("usr"));
+	  $.ajax({
+	    type:'DELETE',
+	    url:'/eliminarUsuario/'+usr._id,//$.cookie("uid"),
+	    data:'{}',
+	    success:function(data){
+	      if (data.resultados==1)
+	      {
+	        eliminarCookies();
+	        mostrarLogin();
+	      }
+	      },
+	    contentType:'application/json',
+	    dataType:'json'
+	  });
+	}
 }

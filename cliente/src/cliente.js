@@ -16,7 +16,7 @@ function Cliente(id, email){ /* El id viene de mongo */
 		this.socket.emit('nuevoJugador', {room:this.nombre, id:this.id}); /* El cliente espera */
 	}; // Fin nuevoJugador
 	this.enviarPosicion=function(x,y,ang, puntos, tiempo){
-		this.socket.emit('posicion', this.nombre, {"id":this.id,"x":x,"y":y,"ang":ang, "puntos":puntos, "tiempo":tiempo});
+		this.socket.emit('posicion', this.nombre, {"id":this.id,"email":this.email,"x":x,"y":y,"ang":ang, "puntos":puntos, "tiempo":tiempo});
 	}; // Fin enviarPosicion
 	this.ini = function(nombre, num){
 		// this.id = randomInt(1,1000);

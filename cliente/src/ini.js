@@ -20,7 +20,6 @@ function borrar(){
 
 function mostrarIntroducirPartida() {
 	limpiar();
-	$('#cabecera').remove();
 	var cadena;
 	cadena = "<h1><font color='black'>No Hay Calabazas</font></h1>";
 	cadena=cadena+"<form class='form-inline'><div class='form-group'><label id='lbl'><font color='white'>Partida:</font></label> ";

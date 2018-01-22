@@ -107,9 +107,34 @@ app.put("/actualizarUsuario",function(request,response){
         });
 });
 
-app.get('/obtenerResultados', function(request, response) {
+/*app.get('/obtenerResultados', function(request, response) {
     juego.obtenerResultados(function(lista){
         response.send(lista);        
+    });
+});*/
+
+app.get("/obtenerResultados/:uid",function(request,response){
+    var usr=juego.obtenerUsuario(request.params.uid);
+    if (usr){
+        juego.obtenerResultados(function(result){
+            response.send(result);
+        });
+    }
+    else{
+        response.send({'resultados':[]});
+    }
+});
+
+app.put("/actualizarUsuario",function(request,response){
+    juego.actualizarUsuario(request.body,function(result){
+            response.send(result);
+        });
+});
+
+app.delete("/eliminarUsuario/:uid",function(request,response){
+    var uid=request.params.uid;
+    juego.eliminarUsuario(uid,function(result){
+        response.send(result);
     });
 });
 

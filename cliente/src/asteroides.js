@@ -1,12 +1,10 @@
 function Boot(){
     this.create=function(){
-        console.log("2");
         cliente.cargarConfiguracion(game.width-20,game.height-20);
     }
 }
 
 function Juego(){
-    console.log("3");
     this.naves={};
     this.cursors;
     this.naveLocal;
@@ -26,13 +24,11 @@ function Juego(){
         game.load.image('reset', '../img/reset.png');
     }
     this.init=function(data, objetivo){ //data es para coger las coordenadas
-        console.log("4");
         game.stage.disableVisibilityChange = true;
         this.coord = data;
         this.objetivo = objetivo;
     }
     this.mostrarObjetivo = function(veg){
-        console.log("5");
         var img = this.veggies.create(25,35, 'veggies', veg);
     }
     this.create=function() {

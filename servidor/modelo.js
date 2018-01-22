@@ -215,7 +215,7 @@ function Partida(nombre, num, juego) {
 		if (data.puntos >= this.objetivoNumFruta) {
 			this.estado = new Final();
 			this.enviarFinal(data.id);
-			this.juego.agregarResultado({"usuario":data.id,"nivel":this.objetivoNumFruta,"tiempo":data.tiempo});
+			this.juego.agregarResultado({"email":data.email,"usuario":data.id,"nivel":this.objetivoNumFruta,"tiempo":data.tiempo});
 			console.log('Tiempo: ' + data.tiempo);
 		} else {
 			this.callback('movimiento', data);
