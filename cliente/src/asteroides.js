@@ -17,10 +17,10 @@ function Juego(){
     this.contador = 0;
     this.preload=function() {
         game.load.image('espacio', '../img/deep-space.jpg');
-        game.load.image('disparo', '../img/bullets.png');
+        game.load.image('fondo', '../img/fondo_inicio.png');
         game.load.image('nave', '../img/ship.png');
         game.load.image('nave2', '../img/ship2.png');
-        game.load.spritesheet('veggies', '../img/veggies.png', 32, 32);
+        game.load.spritesheet('veggies', '../img/veggies.png', 44, 40);
         game.load.image('reset', '../img/reset.png');
     }
     this.init=function(data, objetivo){ //data es para coger las coordenadas
@@ -210,23 +210,23 @@ function FinJuego(){
             cadena = "Enhorabuena, ¡ERES EL GANADOR!";
         }
         else{
-            cadena = "Lo siento, tu rival te ha vencido"
+            cadena = "Lo siento, tu rival te ha vencido";
         }
         var text2 = game.add.text(game.world.centerX, 180, cadena, {
             font: "25px Arial",
-            fill: "#FDFEFE",
+            fill: "#FFFF00",
             align: "center"
         });
         text2.anchor.setTo(0.5, 0.5); 
-        var text1 = game.add.text(game.world.centerX, 220, "¿Has encontrado alguna calabaza?", {
+       /* var text1 = game.add.text(game.world.centerX, 220, "¿Has encontrado alguna calabaza?", {
             font: "25px Arial",
             fill: "#FDFEFE",
             align: "center"
         });
-        text1.anchor.setTo(0.5, 0.5);   
-        var text = game.add.text(game.world.centerX, 300, 'FIN JUEGO', {
+        text1.anchor.setTo(0.5, 0.5);   */
+        var text1 = game.add.text(game.world.centerX, 250, 'FIN JUEGO', {
             font: "25px Arial",
-            fill: "#FDFEFE",
+            fill: "#FFFF00",
             align: "center"
         });
         text1.anchor.setTo(0.5, 0.5);

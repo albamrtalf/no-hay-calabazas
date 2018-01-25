@@ -42,7 +42,6 @@ function Juego() {
 	this.iniciarSesion=function(email,pass,callback){
         var ju=this;
         var passCifrada=cf.encrypt(pass);
-        console.log(email + " " + pass);
     	this.persistencia.encontrarUsuarioCriterio({email:email,pass:passCifrada,confirmada:true},function(usr){
 	        if (!usr){ /* Si no hay usuarios */
 	            callback({'email':''}); 
@@ -179,7 +178,7 @@ function Partida(nombre, num, juego) {
 	this.coord=[];
 	//this.io;
 	this.numJugadores = num;
-	this.objetivoNumFruta = 10;
+	this.objetivoNumFruta = 5;
 	this.nave = 'nave';
 	this.callback;
 	this.iniciar = function(callback) {
@@ -240,6 +239,7 @@ function Partida(nombre, num, juego) {
 	this.volverAJugar = function(callback){
 	  //this.socket = socket;
 	  this.callback = callback;
+	  this.objetivoNumFruta =+ 5;
 	  this.estado.volverAJugar(this);
 	}
 	this.reset = function(){
@@ -255,7 +255,7 @@ function Partida(nombre, num, juego) {
 	  //this.socket.broadcast.to(this.nombre).emit('reset',this.coord);
 	}
     this.ini=function(){
-        this.veg=randomInt(0,24);
+        this.veg=randomInt(0,11);
         var otra=this.veg+1;
         //this.veg = 1;
         this.objetivo = this.veg;
@@ -270,9 +270,9 @@ function Partida(nombre, num, juego) {
         var alea;
         for(var i=0;i<30;i++){
 	        do {
-	            alea=randomInt(0,25);
+	            alea=randomInt(0,12);
 	        }while(alea==this.veg || alea==otra)
-		        this.coord.push({'veg':alea,'x':randomInt(10,720),'y':randomInt(25,520)});
+		        this.coord.push({'veg':alea,'x':randomInt(10,720),'y':randomInt(12,520)});
 	    }
     }
 

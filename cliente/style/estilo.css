@@ -1,23 +1,59 @@
 body
 {
+  background: url(../img/fondo_inicio.jpg);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-color: black;
   margin: 0;
 }
 .container{
-	padding-top: 30px;
-	/*padding-bottom: 30px;	*/
-    padding-left: 18%;
-    padding-right: 18%;
+  padding-top: 230px;
+  padding-left: 17%;
+  padding-right: 20%;
 }
-.juego{
+.partidainicio{
+  /*padding-top: 190px;*/
+  margin-top: 35%;
+  /*adding-left: 17%;
+  padding-right: 20%;*/
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: #000000;
+  font-size: 2rem;
+  display: block;
+  /*padding: 0px 264px;*/
+  cursor: pointer;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+/* @font-face kit by Fonts2u (http://www.fonts2u.com) */ 
+@font-face {font-family:"STARWARS";src:url("STARWARS.eot?") format("eot"),url("STARWARS.woff") format("woff"),url("STARWARS.ttf") format("truetype"),url("STARWARS.svg#STARWARS") format("svg");font-weight:normal;font-style:normal;}
+#titulo, #cabeceraP, #tab_res {
+  font-family:"STARWARS";
+}
+#lbl {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#sel2 {
+  width: 68px;
+}
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+  width: 800px;
+}
+.btn-primary {
+  background-color: #04B4AE;
+  border-color: #04B4AE;
 }
 #cabeceraP {
     color: white;
 }
 #nombreBtn {
-    margin-left: 27%;
+ margin-right: 3%;
 }
 #refRecordar {
-    margin-left: 47%;
+  margin-right: 5%;
 }
 
 video.fillWidth {
@@ -28,49 +64,144 @@ label{
 	font-size:16px;
 }
 .video-background {
-    height: 94%;
-    position: fixed;
-    width: 100%;
-    z-index: -100;
-    opacity: 1; 
-    overflow: hidden;
+  height: 94%;
+  position: fixed;
+  width: 100%;
+  z-index: -100;
+  opacity: 1; 
+  overflow: hidden;
 }
 .fondo {
-    height: 94%;
-    position: fixed;
-    width: 100%;
-    z-index: -200;
-    opacity: 1; 
-    overflow: hidden;	
+  height: 94%;
+  position: fixed;
+  width: 100%;
+  z-index: -200;
+  opacity: 1; 
+  overflow: hidden;	
 }
 /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: #F3F781;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+  height: 450px
+}
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;} 
+}
+.datagrid table {
+  background: #DFFFDE;  
+  border-collapse: collapse; 
+  text-align: left; 
+  width: 100%; 
+} 
+.datagrid {
+  font: normal 12px/150% Geneva, Arial, Helvetica, sans-serif; 
+  overflow: hidden; 
+  -webkit-border-radius: 7px; 
+  -moz-border-radius: 7px; border-radius: 7px; 
+}
+.datagrid table td, .datagrid table th { 
+  padding: 14px 10px; 
+}
+.datagrid table thead th {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #36752D), color-stop(1, #275420) );
+  background:-moz-linear-gradient( center top, #36752D 5%, #275420 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');
+  background-color:#36752D; 
+  color:#FFFFFF;
+  font-size: 18px; 
+  font-weight: bold; border-left: 1px solid #36752D; 
+} 
+.datagrid table thead th:first-child { 
+  border: none; 
+}
+.datagrid table tbody td { 
+  color: #275420; 
+  border-left: 3px solid #C6FFC2;
+  font-size: 17px;
+  font-weight: normal; 
+}
+.datagrid table tbody .alt td { 
+  background: #DFFFDE; 
+  color: #275420; 
+}
+.datagrid table tbody td:first-child { 
+  border-left: none; 
+}
+.datagrid table tbody tr:last-child td { 
+  border-bottom: none; 
+}
+.datagrid table tfoot td div { 
+  border-top: 1px solid #36752D;
+  background: #DFFFDE;
+} 
+.datagrid table tfoot td { 
+  padding: 0; font-size: 17px 
+} 
+.datagrid table tfoot td div{ 
+  padding: 8px; 
+}
+.datagrid table tfoot td ul { 
+  margin: 0; 
+  padding:0; 
+  list-style: none; 
+  text-align: right; 
+}
+.datagrid table tfoot  li { 
+  display: inline; 
+}
+.datagrid table tfoot li a { 
+  text-decoration: none; 
+  display: inline-block;  
+  padding: 2px 8px; 
+  margin: 1px;
+  color: #FFFFFF;
+  border: 1px solid #36752D;
+  -webkit-border-radius: 3px; 
+  -moz-border-radius: 3px; 
+  border-radius: 3px; 
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #36752D), color-stop(1, #275420) );
+  background:-moz-linear-gradient( center top, #36752D 5%, #275420 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');
+  background-color:#36752D; 
+}
+.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { 
+  text-decoration: none;
+  border-color: #275420; 
+  color: #FFFFFF; 
+  background: none; 
+  background-color:#36752D;
+}
+div.dhtmlx_window_active, div.dhx_modal_cover_dv { 
+  position: fixed !important; 
+}
+#todos, #mislogros, #losmejores {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#tabla_actel {
+  background-color: white;
+  opacity: 0.95;  
+}

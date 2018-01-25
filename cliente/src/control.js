@@ -2,7 +2,7 @@ function mostrarLogin(){
   limpiar();
   /* Formulario */
  var cadena='<div class="container" id="login"><div class="mainbox col-md-6 col-md-offset-3">';
-  cadena=cadena+'<h2 id="cabeceraP">Inicio de sesión</h2><div id="ig1" class="input-group" style="margin-bottom:25px">';
+  cadena=cadena+'<h2 id="cabeceraP"><font color="yellow">INICIO DE SESION</font></h2><div id="ig1" class="input-group" style="margin-bottom:25px">';
   cadena=cadena+'<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>';
   cadena=cadena+'<input id="email" type="text" class="form-control" name="email" placeholder="Escribe tu email"></div>';
   cadena=cadena+'<div id="ig2" class="input-group" style="margin-bottom:25px">';
@@ -46,7 +46,7 @@ function mostrarRegistro(){
 
 //  $('#home').append('<p id="cabecera"><h2 id="cabeceraP">Registro de usuarios</h2><input type="email" id="email" class="form-control" placeholder="introduce tu email"><input type="password" id="clave" class="form-control" placeholder="introduce tu clave"></p>');
 var cadena='<div class="container" id="login"><div class="mainbox col-md-6 col-md-offset-3">';
-  cadena=cadena+'<h2 id="cabeceraP">Nuevo usuario</h2><div id="ig1" class="input-group" style="margin-bottom:25px">';
+  cadena=cadena+'<h2 id="cabeceraP"><font id="tab_res" color="yellow" >NUEVO USUARIO</font></h2><div id="ig1" class="input-group" style="margin-bottom:25px">';
   cadena=cadena+'<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>';
   cadena=cadena+'<input id="email" type="text" class="form-control" name="email" placeholder="Escribe tu email"></div>';
   cadena=cadena+'<div id="ig12" class="input-group" style="margin-bottom:25px">';
@@ -86,6 +86,7 @@ var cadena='<div class="container" id="login"><div class="mainbox col-md-6 col-m
 function mostrarActualizarEliminar(){
   //borrarLogin();
   limpiar();
+  $('#resultados').remove();
   var uid;
   if ($.cookie("usr")!=undefined){
     var usr=JSON.parse($.cookie("usr"));
@@ -94,8 +95,8 @@ function mostrarActualizarEliminar(){
   if(uid!=undefined)
   {
     var cadena = '<div id="cabeceraActualizar" class="bg4" style="padding-bottom:15px;">';
-    cadena = cadena + '<h2>Actualizar datos del usuario</h2>';
-    cadena = cadena + '<table class="table">';
+    cadena = cadena + '<h2><font id="tab_res" color="yellow" >ACTUALIZAR DATOS DEL USUARIO</font></h2>';
+    cadena = cadena + '<table id="tabla_actel" class="table">';
     cadena = cadena + '<tr><td><label>Email: </label></td><td>'+usr.email+'</td></tr>';
     cadena = cadena + '<tr><td><label>Clave anterior: </label></td><td><input type="password" id="oldpass" class="form-control" placeholder="Contraseña anterior:"></span></td></tr>';
     cadena = cadena + '<tr><td><label>Nueva clave: </label></td><td><input type="password" id="newpass" class="form-control" placeholder="introduce tu nueva clave"></td></tr>';
@@ -158,7 +159,7 @@ function mostrarResultados(datos){
   //var cadena="<div class='panel panel-default' id='res'><div class='panel-heading'><h4>Resultados</h4></div>";
   //cadena=cadena+"<div class='panel-body'>";
   
-  var cadena='<div id="tab" class="bg1"><h3>Resultados</h3><ul class="nav nav-tabs bg4">';
+  var cadena='<div id="tab" class="datagrid"><h3><font id="tab_res" color="yellow" >RESULTADOS</font></h3><ul class="nav nav-tabs bg4">';
   cadena=cadena+'<li class="active"><a href="#todos" data-toggle="tab">Todos</a></li>'
   cadena=cadena+'<li><a href="#mislogros" data-toggle="tab">Mis logros</a></li>'
   cadena=cadena+'<li><a href="#losmejores" data-toggle="tab">Los mejores</a></li></ul>'
@@ -178,15 +179,16 @@ function mostrarResultados(datos){
  // mostrarControlPaginas(datos.length); 
 }
 
+
 function obtenerTodos(datos){
   var misDatos=(_.sortBy(datos,'puntos')).reverse();
-  var cadena="<table id='table' class='table table-bordered table-condensed table-striped bg4'><thead><tr><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Puntos</th></tr></thead>";
+  var cadena="<table id='table' class='table table-bordered table-condensed table-striped bg4'><thead><tr><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Tiempo</th></tr></thead>";
   cadena=cadena+'<tbody>';
   for(var i=0;i<misDatos.length;i++){
       var fecha=new Date(misDatos[i].fecha);
       var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
       var nombre=misDatos[i].email.substr(0,misDatos[i].email.indexOf('@'));
-      cadena=cadena+"<tr class='data'><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+misDatos[i].nivel+"</td>"+"</td><td>"+misDatos[i].puntos+"</td></tr>";      
+      cadena=cadena+"<tr class='data'><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+misDatos[i].nivel+"</td>"+"</td><td>"+misDatos[i].tiempo+"</td></tr>";      
     }
     cadena=cadena+"</tbody></table>";
   return cadena;
@@ -201,12 +203,12 @@ function obtenerMisLogros(datos){
   }),'puntos');
 
   var misDatos=nDatos.reverse();  
-  var cadena="<table class='table table-bordered table-condensed table-striped bg4'><tr><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Puntos</th></tr>";
+  var cadena="<table id='table' class='table table-bordered table-condensed table-striped bg4'><tr><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Tiempo</th></tr>";
   for(var i=0;i<misDatos.length;i++){ 
       var fecha=new Date(misDatos[i].fecha);
       var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
       var nombre=misDatos[i].email.substr(0,misDatos[i].email.indexOf('@'));
-      cadena=cadena+"<tr><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+misDatos[i].nivel+"</td>"+"</td><td>"+misDatos[i].puntos+"</td></tr>";      
+      cadena=cadena+"<tr><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+misDatos[i].nivel+"</td>"+"</td><td>"+misDatos[i].tiempo+"</td></tr>";      
     }
     cadena=cadena+"</table>";
   return cadena;
@@ -229,12 +231,12 @@ function obtenerLosMejores(datos){
     tope=10;
   var nCol=_.sortBy(datos,'puntos');
   var nuevaCol=nCol.reverse(); 
-  var cadena="<table class='table table-bordered table-condensed table-striped bg4'><tr><th>Puesto</th><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Puntos</th></tr>";
+  var cadena="<table class='table table-bordered table-condensed table-striped bg4'><tr><th>Puesto</th><th>Nombre</th><th>Fecha</th><th>Nivel</th><th>Tiempo</th></tr>";
   for(var i=0;i<tope;i++){ 
       var fecha=new Date(nuevaCol[i].fecha);
       var strFecha=fecha.getDate()+'/'+(fecha.getMonth()+1)+'/'+fecha.getFullYear()+'  '+fecha.getHours()+':'+fecha.getMinutes();
       var nombre=nuevaCol[i].email.substr(0,nuevaCol[i].email.indexOf('@'));
-      cadena=cadena+"<tr><td>"+(i+1)+"</td><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+nuevaCol[i].nivel+"</td>"+"</td><td>"+nuevaCol[i].puntos+"</td></tr>";      
+      cadena=cadena+"<tr><td>"+(i+1)+"</td><td>"+nombre+"</td><td>"+strFecha+"</td><td> "+nuevaCol[i].nivel+"</td>"+"</td><td>"+nuevaCol[i].tiempo+"</td></tr>";      
     }
     cadena=cadena+"</table>";
   return cadena;

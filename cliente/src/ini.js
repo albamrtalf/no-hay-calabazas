@@ -24,11 +24,11 @@ function mostrarIntroducirPartida() {
 	$('#cabecera').remove();
 
 	var cadena = " ";
-	cadena = "<h1><font color='black'>No Hay Calabazas</font></h1>";
-	cadena=cadena+"<form class='form-inline'><div class='form-group'><label id='lbl'><font color='white'>Partida:</font></label> ";
-	cadena=cadena+'<input id="nombre" class="form-control" type="text" placeholder="nombre jugador"> ';
-	cadena=cadena+'<button type="button" class="btn btn-primary" id="btn">Nueva partida</button></form></div>';
-	cadena=cadena+'<label>Jugadores:</label> <select class="form-control" id="sel2"> <option>1</option><option>2</option></select> ';
+	cadena = "<div id='titulo'><h2><font color='yellow'>ERES UN VERDADERO JEDI?</font></h2></div>";
+	cadena=cadena+"<div class='partidainicio'><form class='form-inline'><div class='form-group'><label id='lbl'><font color='white'>Partida:</font></label> ";
+	cadena=cadena+'<input id="nombre" class="form-control" type="text" placeholder="nombre partida"> <label id="lbl"><font color="white">Jugadores:</font></label> <select class="form-control" id="sel2"> <option>1</option><option>2</option></select>';
+	cadena=cadena+'<button type="button" class="btn btn-primary" id="btn">Nueva partida</button></form>';
+	cadena=cadena+'</div></div>';
 
 	$('#partida').append(cadena);
 	$('#btn').on('click', function() {
@@ -73,7 +73,7 @@ function listaPartidas(lista){
 }
 
 function mostrarCanvas() {
-	game = new Phaser.Game(800, 600, Phaser.CANVAS, 'no-hay-calabazas');
+	game = new Phaser.Game(850, 550, Phaser.CANVAS, 'no-hay-calabazas');
 
 	boot=new Boot();
 	juego=new Juego();
