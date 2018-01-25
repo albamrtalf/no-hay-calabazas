@@ -27,6 +27,7 @@ function mostrarLogin(){
         com.loginUsuario(email,clave);
       });
     }
+	
     else {
       mostrarAviso("Debe ser una dirección de email");
       //$("#info span").text("Debe ser una dirección de email");
