@@ -3,6 +3,7 @@ function Boot(){
         cliente.cargarConfiguracion(game.width-20,game.height-20);
     }
 }
+
 function Juego(){
     this.naves={};
     this.cursors;
