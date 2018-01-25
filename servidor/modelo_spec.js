@@ -100,7 +100,7 @@ describe("En el juego SpaceChallenge",function(){
         // }
 
        for(var i=0;i<5;i++){
-        it("El usuario pepe@pepe.es comienza ajugar",function(done){
+        it("El usuario patata@patata.es comienza ajugar",function(done){
             var data;
             var puntos=0;
             //el objetivo ocupa las n primeras posiciones                
