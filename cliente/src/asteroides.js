@@ -52,7 +52,7 @@ function Juego(){
         this.cursors = game.input.keyboard.createCursorKeys();
         game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
         
-        this.marcador = game.add.text(game.world.centerX, 25, "Partida: "+cliente.email+" - Puntos. Yo: 0 - Rival:0", {
+        this.marcador = game.add.text(game.world.centerX, 25, "Partida: "+cliente.email+" - Puntos. Yo: 0 - Rival: 0", {
             font: "25px Arial",
             fill: "#FDFEFE",
             align: "center"

@@ -66,7 +66,7 @@ describe("En el juego SpaceChallenge",function(){
                 juego.partidas['prueba'].iniciar(function(mens,data){
                         expect(mens).toEqual('coord');
                         expect(data).toBeDefined();
-            coord=data;
+                        coord=data;
                         done();
                 });
         });
@@ -80,10 +80,10 @@ describe("En el juego SpaceChallenge",function(){
         });
 
         it('El estado del juego ya no es inicial',function(){
-                expect(juego.partidas['prueba'].estado.esInicial()).toEqual(false);
-        expect(juego.partidas['prueba'].estado.esJugar()).toEqual(true);
-        numeroFrutas=juego.partidas['prueba'].numeroFrutas;
-        expect(numeroFrutas).toEqual(juego.partidas['prueba'].numeroFrutas);
+            expect(juego.partidas['prueba'].estado.esInicial()).toEqual(false);
+            expect(juego.partidas['prueba'].estado.esJugar()).toEqual(true);
+            numeroFrutas=juego.partidas['prueba'].numeroFrutas;
+            expect(numeroFrutas).toEqual(juego.partidas['prueba'].numeroFrutas);
         });
 
         // for(var i=0;i<=coord.length;i++){
@@ -99,40 +99,27 @@ describe("En el juego SpaceChallenge",function(){
         //      })      
         // }
 
-        it('El estado del juego ya no es inicial y el usuario juega la partida', function (done) {
-                expect(juego.partidas['prueba'].estado.esInicial()).toEqual(false);
-                expect(juego.partidas['prueba'].estado.esJugar()).toEqual(true);
-                numeFrutas = juego.partidas['prueba'].numeroFrutas;
-                //console.log('En el momento de retornar las frutas de la partida tenemos: ' +numeFrutas+' frutas.');
-                expect(numeFrutas).toEqual(juego.partidas['prueba'].numeroFrutas);
-
-                for (var i = 0; i <= numeFrutas; i++) {
-                        // it("El usuario patata@patata.es comienza ajugar", function (done) {
-                                var data;
-                                // var puntos = 0;
-                                // el objetivo ocupa las n primeras posiciones                
-                                x = coord[i].x;
-                                y = coord[i].y;
-                                data = {
-                                        "id": uid,
-                                        "x": x,
-                                        "y": y,
-                                        "ang": 0,
-                                        "puntos": i,
-                                        "tiempo": 0
-                                };
-                                juego.partidas['prueba'].movimiento(data, function (mens, datos) {
-                                        if (mens != 'final') {
-                                                // movimiento
-                                                expect(mens).toEqual('movimiento');
-                                        } else {
-                                                // final
-                                                expect(mens).toEqual('final');
-                                                done();
-                                        }
-                                });
-                }
-        });
+       for(var i=0;i<5;i++){
+        it("El usuario pepe@pepe.es comienza ajugar",function(done){
+            var data;
+            var puntos=0;
+            //el objetivo ocupa las n primeras posiciones                
+                        x=coord[i].x;
+                        y=coord[i].y;
+                        data={"id":uid,"x":x,"y":y,"ang":0,"puntos":puntos,"tiempo":0};
+                        juego.partidas['prueba'].movimiento(data,function(mens,datos){
+                    if (mens!='final'){
+                        //mover
+                        expect(mens).toEqual('movimiento');
+                    }
+                    else{
+                        expect(mens).toEqual('final');
+                    }
+                    puntos++;
+                    done();
+                });                   
+                });
+         };
 
     it("El usuario patata@patata.es ha sido eliminado",function(done){
         juego.eliminarUsuario(uid,function(resultado){

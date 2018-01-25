@@ -13,23 +13,26 @@ function Juego() {
             return usu._id==id
         });
 	}
-	this.obtenerKeyUsuario=function(email,adminKey,callback){
-                if (adminKey=="pass1234")
-            {
-                this.persistencia.encontrarUsuarioCriterio({email:email,confirmada:false},function(usr){
-                    if (!usr){
-                        callback({key:""});
-                    }
-                    else{
-                        callback({key:usr.key});
-                    }
-                });
-            }
-            else
-            {
-                callback({key:""});
-            }
+
+    this.obtenerKeyUsuario=function(email,adminKey,callback){
+        if (adminKey=="admin")
+        {
+            this.persistencia.encontrarUsuarioCriterio({email:email,confirmada:false},function(usr){
+                if (!usr){
+                    callback({key:""});
+                }
+                else{
+                    callback({key:usr.key});
+                }
+            });
         }
+        else
+        {
+            callback({key:""});
+        }
+    }
+
+
 	this.nuevaPartida=function(id,nombre,num,callback){
 		if (this.usuarios[id] != null){
 			if (this.partidas[nombre]==null){
@@ -239,7 +242,7 @@ function Partida(nombre, num, juego) {
 	this.volverAJugar = function(callback){
 	  //this.socket = socket;
 	  this.callback = callback;
-	  this.objetivoNumFruta =+ 5;
+	  //this.objetivoNumFruta =+ 5;
 	  this.estado.volverAJugar(this);
 	}
 	this.reset = function(){
@@ -249,6 +252,7 @@ function Partida(nombre, num, juego) {
 	  this.jugadores = {};
 	  this.coord = [];
 	  this.ini();
+	  this.nave ='nave'; /**/
 	  this.estado = new Inicial();
 	  this.callback('reset', this.coord);
 	  //this.io.sockets.in(this.nombre).emit('reset',this.coord);
@@ -309,6 +313,9 @@ function Jugar() {
 	this.agregarJugador = function(id, juego) { // Si se esta jugando ya
 		console.log('No se pueden agregar jugadores');
 	}
+	this.esJugar=function(){
+        return true;
+    }
 	this.movimiento = function (data, juego) {
 		juego.puedeMover(data);
 	}
