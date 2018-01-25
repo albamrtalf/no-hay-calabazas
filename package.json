@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/albamrtalf/Juego-Asteroides.git"
+    "url": "git+https://github.com/albamrtalf/no-hay-calabazas.git"
   },
   "bugs": {
-    "url": "https://github.com/albamrtalf/Juego-Asteroides/issues"
+    "url": "https://github.com/albamrtalf/no-hay-calabazas/issues"
   },
-  "homepage": "https://github.com/albamrtalf/Juego-Asteroides#readme"
+  "homepage": "https://github.com/albamrtalf/no-hay-calabazas#readme"
 }
