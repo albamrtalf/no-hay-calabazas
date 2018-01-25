@@ -17,7 +17,6 @@ function borrar(){
 	$('#btn').remove(); 
 	$('.video-background').remove(); 
 }
-
 function mostrarIntroducirPartida() {
 	limpiar();
 	$('#cabecera').remove();
