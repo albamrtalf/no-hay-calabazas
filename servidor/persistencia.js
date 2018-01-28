@@ -99,8 +99,7 @@ function Persistencia(){
 
     this.conectar=function(callback){
         var pers=this;
-        mongo.connect("mongodb://alba:a659676212@ds261745.mlab.com:61745/no-hay-calabazas", function(err, db)  {
-        //mongo.connect("mongodb://127.0.0.1:27017/usuarioscn", function(err, db) {    
+         //mongo.connect("mongodb://127.0.0.1:27017/usuarioscn", function(err, db) {    
             if (err){
                 console.log("No pudo conectar a la base de datos")
             }
